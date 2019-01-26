@@ -27,22 +27,27 @@ class Landing extends Component {
             </div>
           </div>
           <div className="right--main">
-            <div className="header--right">
-              <span className="hello">Hello!</span>
-              <span className="welcome-text">
-                Welcome to Y-Push! Sign in with your admin credentials to get
-                access to high speed push notification over your router.
-              </span>
-            </div>
-            <div className="login-form">
-              <div className="username">
-                <span className="label">Username</span>
-                <input type="text" className="username-input" />
-              </div>
-              <div className="password">
-                <span className="label">Password</span>
-                <input type="password" className="password-input" />
-              </div>
+            <div className="right-content">
+                <div className="header--right">
+                <span className="hello">Hello!</span>
+                <span className="welcome-text">
+                    Welcome to Y-Push! Sign in with your admin credentials to get
+                    access to high speed push notification over your router.
+                </span>
+                </div>
+                <div className="login-form">
+                <div className="username">
+                    <span className="label">Username</span>
+                    <input type="text" className="username-input" />
+                </div>
+                <div className="password">
+                    <span className="label">Password</span>
+                    <input type="password" className="password-input" />
+                </div>
+                <div className="btn-wrapper">
+                    <button className="login">Sign In</button>
+                </div>
+                </div>
             </div>
           </div>
         </div>
@@ -63,6 +68,11 @@ class Landing extends Component {
               width: 100%;
               padding: 3%;
               font-family: "Hind Siliguri", sans-serif;
+              display: flex;
+              align-items: center;
+            }
+            .right-content {
+                margin-top: -215px;
             }
             .top--text {
               font-weight: 900;
@@ -112,19 +122,21 @@ class Landing extends Component {
               font-weight: 400;
               color: #9e9e9e;
             }
-            .username, .password {
+            .username,
+            .password {
               margin-top: 30px;
               display: flex;
               flex-direction: column;
               max-width: 40%;
             }
             .password {
-                margin-top: 15px;
+              margin-top: 15px;
             }
             .label {
               color: #7d7d7d;
             }
-            .username-input, .password-input {
+            .username-input,
+            .password-input {
               height: 25px;
               margin-top: 7px;
               border-radius: 5px;
@@ -134,12 +146,35 @@ class Landing extends Component {
               transition: all 0.5s;
             }
             .username-input:focus {
-                outline: none;
-                border: solid 1px #000;
+              outline: none;
+              border: solid 1px #000;
             }
             .password-input:focus {
-                outline: none;
-                border: solid 1px #000;
+              outline: none;
+              border: solid 1px #000;
+            }
+            .btn-wrapper {
+              margin-top: 20px;
+              display: flex;
+              justify-content: flex-start;
+              max-width: 40%;
+            }
+            .login {
+              border: none;
+              box-shadow: none;
+              width: 40%;
+              height: 40px;
+              border-radius: 5px;
+              background: #131124;
+              color: #fff;
+              font-weight: 600;
+              transition: all 0.2s ease-in;
+            }
+            .login:hover {
+              background: #fff;
+              color: #131124;
+              border-style: inset;
+              border-color: #131124;
             }
           `}
         </style>
