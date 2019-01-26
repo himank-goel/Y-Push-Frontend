@@ -9,6 +9,7 @@ class App extends Component {
       pageDisplay: "Landing"
     };
     this.handlePageChange = this.handlePageChange.bind(this);
+    this.handleLogOut = this.handleLogOut.bind(this);
   }
 
   handlePageChange(confirmation) {
@@ -19,13 +20,21 @@ class App extends Component {
     }
   }
 
+  handleLogOut(confirmation) {
+    if (confirmation === true) {
+      this.setState({
+        pageDisplay: "Landing"
+      });
+    }
+  }
+
   render() {
     return (
       <div className="App">
-        {this.state.pageDisplay !== "Landing" ? (
+        {this.state.pageDisplay === "Landing" ? (
           <Landing handlePageChange={this.handlePageChange} />
         ) : (
-          <Notifcation />
+          <Notifcation handleLogOut={this.handleLogOut} />
         )}
       </div>
     );

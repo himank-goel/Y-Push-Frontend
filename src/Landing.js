@@ -123,8 +123,7 @@ class Landing extends Component {
               flex-direction: column;
             }
             .logo {
-              color: #383ea2;
-              opacity: 0.2;
+              color: #fec933;
               margin-bottom: 10px;
             }
             .caption {
@@ -210,6 +209,7 @@ class Landing extends Component {
               color: #fff;
               font-weight: 600;
               transition: all 0.2s ease-in;
+              cursor: pointer;
             }
             .login:hover {
               background: #fff;
