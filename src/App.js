@@ -34,7 +34,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {this.state.pageDisplay !== "Landing" ? (
+        {this.state.pageDisplay === "Landing" ? (
           <Landing handlePageChange={this.handlePageChange} />
         ) : (
           <Notifcation handleLogOut={this.handleLogOut}  ip={this.state.ip} />

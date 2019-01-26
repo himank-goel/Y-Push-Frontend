@@ -1,12 +1,26 @@
 import React, { Component } from "react";
 import { ReactComponent as ProfilePic } from "./media/admin.svg";
 
+function IpCard({ ip }) {
+  return <span className="conn-ips">{ip}</span>;
+}
+
 class Notification extends Component {
   constructor(props) {
     super(props);
     this.state = {
       notifText: "",
-      ip: props.ip
+      ip: props.ip,
+      listOfConnectedIp: [
+        "172.31.1.4",
+        "172.1.1.445",
+        "172.31.1.4",
+        "172.1.1.445",
+        "172.31.1.4",
+        "172.1.1.445",
+        "172.31.1.4",
+        "172.1.1.445"
+      ]
     };
     this.handleNotifChange = this.handleNotifChange.bind(this);
     this.handleLogOut = this.handleLogOut.bind(this);
@@ -22,6 +36,9 @@ class Notification extends Component {
     this.props.handleLogOut(true);
   }
   render() {
+    const ipList = this.state.listOfConnectedIp.map(ip => {
+      return <IpCard ip={ip} />;
+    });
     return (
       <div className="outer--main">
         <div className="inner">
@@ -44,14 +61,24 @@ class Notification extends Component {
             </div>
           </div>
           <div className="textarea">
-            <textarea
-              rows="15"
-              cols="100"
-              className="text-field"
-              placeholder="Write your notification"
-              onChange={this.handleNotifChange}
-            />
-            <button className="send">Send</button>
+            <div className="ip-list">
+              <div className="notepad">
+                <div className="notepad-title">
+                  <span>List of Connected IPs</span>
+                </div>
+                {ipList}
+              </div>
+            </div>
+            <div className="entry-area">
+              <textarea
+                rows="15"
+                cols="30"
+                className="text-field"
+                placeholder="Write your notification"
+                onChange={this.handleNotifChange}
+              />
+              <button className="send">Send</button>
+            </div>
           </div>
         </div>
         <style jsx="true">
@@ -59,6 +86,7 @@ class Notification extends Component {
             .inner {
               background: #131124;
               height: 100vh;
+              font-family: "Hind Siliguri", sans-serif;
             }
             .navbar {
               background: #131124;
@@ -131,7 +159,7 @@ class Notification extends Component {
               font-style: italic;
               font-weight: 400;
             }
-            .textarea {
+            .entry-area {
               display: flex;
               flex-direction: column;
               align-items: center;
@@ -160,6 +188,38 @@ class Notification extends Component {
               color: #fec933;
               border-style: inset;
               border-color: #fec933;
+            }
+            .ip-list {
+              position: fixed;
+              float: left;
+              height: 100%;
+              padding-top: 30px;
+              padding-left: 35px;
+            }
+            .notepad {
+              padding: 10px;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              min-width: 220px;
+              background: rgba(245, 241, 223, 0.95);
+              box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.1);
+            }
+            .notepad-title {
+              font-weight: 600;
+              border-bottom: 2px solid black;
+              display: flex;
+              width: 100%;
+              justify-content: center;
+              margin-bottom: 10px;
+            }
+            .conn-ips {
+              width: 100%;
+              display: flex;
+              justify-content: center;
+              padding: 10px 0;
+              border-bottom: 1px solid black;
+              letter-spacing: 2px;
             }
           `}
         </style>
