@@ -2,6 +2,37 @@ import React, { Component } from "react";
 import { ReactComponent as Illustration } from "./media/illustration.svg";
 
 class Landing extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: "",
+      password: ""
+    };
+    this.handleUsername = this.handleUsername.bind(this);
+    this.handlePassword = this.handlePassword.bind(this);
+    this.handleSignIn = this.handleSignIn.bind(this);
+  }
+
+  handleUsername(event) {
+    this.setState({
+      username: event.target.value
+    });
+  }
+
+  handlePassword(event) {
+    this.setState({
+      password: event.target.value
+    });
+  }
+
+  handleSignIn(event) {
+    if (this.state.username === "admin" && this.state.password === "admin") {
+      this.props.handlePageChange(true);
+    } else {
+      alert("Invalid username or password");
+    }
+  }
+
   render() {
     return (
       <div className="outer">
@@ -28,26 +59,36 @@ class Landing extends Component {
           </div>
           <div className="right--main">
             <div className="right-content">
-                <div className="header--right">
+              <div className="header--right">
                 <span className="hello">Hello!</span>
                 <span className="welcome-text">
-                    Welcome to Y-Push! Sign in with your admin credentials to get
-                    access to high speed push notification over your router.
+                  Welcome to Y-Push! Sign in with your admin credentials to get
+                  access to high speed push notification over your router.
                 </span>
-                </div>
-                <div className="login-form">
+              </div>
+              <div className="login-form">
                 <div className="username">
-                    <span className="label">Username</span>
-                    <input type="text" className="username-input" />
+                  <span className="label">Username</span>
+                  <input
+                    type="text"
+                    onChange={this.handleUsername}
+                    className="username-input"
+                  />
                 </div>
                 <div className="password">
-                    <span className="label">Password</span>
-                    <input type="password" className="password-input" />
+                  <span className="label">Password</span>
+                  <input
+                    type="password"
+                    onChange={this.handlePassword}
+                    className="password-input"
+                  />
                 </div>
                 <div className="btn-wrapper">
-                    <button className="login">Sign In</button>
+                  <button className="login" onClick={this.handleSignIn}>
+                    Sign In
+                  </button>
                 </div>
-                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -72,7 +113,7 @@ class Landing extends Component {
               align-items: center;
             }
             .right-content {
-                margin-top: -215px;
+              margin-top: -215px;
             }
             .top--text {
               font-weight: 900;
