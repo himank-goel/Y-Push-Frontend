@@ -10,7 +10,7 @@ class Landing extends Component {
             <div className="left--inner">
                 <div className="top--text">
                     <span className="logo">Y-Push</span>
-                    <span className="caption">Revolution in Push Notification</span>
+                    <span className="caption">Revolution in Push Notifications</span>
                     <div className="points">
                         <span>Seamless Integration</span>
                         <span>●</span>
@@ -19,7 +19,7 @@ class Landing extends Component {
                         <span>Free of Cost</span>
                     </div>
                 </div>
-                <div>
+                <div className="illustration-box">
                     <Illustration className="illustration"/>
                 </div>
             </div>
@@ -35,14 +35,12 @@ class Landing extends Component {
             }
             .left--main {
                 width: 100%;
-                height: 100vh;
                 padding: 3%;
                 background: linear-gradient(135deg, #1C183A 0%, #131124 33%);
                 font-family: 'Hind Siliguri', sans-serif;
             } 
             .right--main {
                 width: 100%;
-                height: 100vh;
                 padding: 3%;
             }
             .top--text {
@@ -71,9 +69,14 @@ class Landing extends Component {
                 padding-right: 240px;
                 font-variant: all-small-caps;
             }
+            .illustration-box {
+                display: flex;
+                justify-content: space-around;
+            }
             .illustration {
                 width: 70%;
-                margin-top: -30%;
+                height: 70%;
+                margin-top: 101px;
             }
         `}
         </style>
