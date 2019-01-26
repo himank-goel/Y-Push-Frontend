@@ -5,7 +5,8 @@ class Notification extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      notifText: ""
+      notifText: "",
+      ip: props.ip
     };
     this.handleNotifChange = this.handleNotifChange.bind(this);
     this.handleLogOut = this.handleLogOut.bind(this);
@@ -38,7 +39,7 @@ class Notification extends Component {
               <span className="name">John Doe</span>
               <div className="network-details">
                 <span>My network IP : </span>
-                <span className="ip">172.31.1.1</span>
+                <span className="ip">{this.state.ip}</span>
               </div>
             </div>
           </div>

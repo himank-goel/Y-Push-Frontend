@@ -25,12 +25,31 @@ class Landing extends Component {
     });
   }
 
-  handleSignIn(event) {
-    if (this.state.username === "admin" && this.state.password === "admin") {
-      this.props.handlePageChange(true);
-    } else {
-      alert("Invalid username or password");
-    }
+  handleSignIn() {
+    const data = {
+      username: this.state.username,
+      password: this.state.password
+    };
+    let response = fetch("http://683df066.ngrok.io/login", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: { "Content-Type": "application/json" }
+    });
+    response.then(data => {
+      if (data.status === 200) {
+        data.json().then(stream => {
+					this.props.handlePageChange(true, stream.IP);
+        });
+      } else {
+				alert("Invalid username or password");
+			}
+    });
+    // if (response.status === 200) {
+    // 	console.log(response);
+    //   this.props.handlePageChange(true);
+    // } else {
+    // 	alert("Invalid username or password");
+    // }
   }
 
   render() {
