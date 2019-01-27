@@ -45,7 +45,7 @@ class Landing extends Component {
               return response.json();
             })
             .then(myJson => {
-              this.props.handlePageChange(true, ipAddr, myJson);
+              this.props.handlePageChange(true, ipAddr, myJson.List);
             });
         });
       } else {
