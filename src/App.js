@@ -7,18 +7,20 @@ class App extends Component {
     super(props);
     this.state = {
       pageDisplay: "Landing",
-      ip: ""
+      ip: "",
+      list: []
     };
     this.handlePageChange = this.handlePageChange.bind(this);
     this.handleLogOut = this.handleLogOut.bind(this);
   }
 
-  handlePageChange(confirmation, ip) {
+  handlePageChange(confirmation, ip, list) {
     if (confirmation === true) {
       const myIp = ip.split("//")[1].split("/")[0];
       this.setState({
         pageDisplay: "Notifcation",
-        ip: myIp
+        ip: myIp,
+        list
       });
     }
   }
@@ -37,7 +39,7 @@ class App extends Component {
         {this.state.pageDisplay === "Landing" ? (
           <Landing handlePageChange={this.handlePageChange} />
         ) : (
-          <Notifcation handleLogOut={this.handleLogOut}  ip={this.state.ip} />
+          <Notifcation handleLogOut={this.handleLogOut}  ip={this.state.ip} list={this.state.list} />
         )}
       </div>
     );

@@ -25,12 +25,13 @@ class Landing extends Component {
     });
   }
 
-  handleSignIn() {
+  async handleSignIn() {
+    let ipAddr;
     const data = {
       username: this.state.username,
       password: this.state.password
     };
-    let response = fetch("http://683df066.ngrok.io/login", {
+    let response = fetch("https://ypush.herokuapp.com/login", {
       method: "POST",
       body: JSON.stringify(data),
       headers: { "Content-Type": "application/json" }
@@ -38,11 +39,18 @@ class Landing extends Component {
     response.then(data => {
       if (data.status === 200) {
         data.json().then(stream => {
-					this.props.handlePageChange(true, stream.IP);
+          ipAddr = stream.IP;
+          fetch(ipAddr)
+            .then(response => {
+              return response.json();
+            })
+            .then(myJson => {
+              this.props.handlePageChange(true, ipAddr, myJson);
+            });
         });
       } else {
-				alert("Invalid username or password");
-			}
+        alert("Invalid username or password");
+      }
     });
     // if (response.status === 200) {
     // 	console.log(response);

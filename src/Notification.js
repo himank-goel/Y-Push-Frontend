@@ -11,19 +11,11 @@ class Notification extends Component {
     this.state = {
       notifText: "",
       ip: props.ip,
-      listOfConnectedIp: [
-        "172.31.1.4",
-        "172.1.1.445",
-        "172.31.1.4",
-        "172.1.1.445",
-        "172.31.1.4",
-        "172.1.1.445",
-        "172.31.1.4",
-        "172.1.1.445"
-      ]
+      listOfConnectedIp: props.list
     };
     this.handleNotifChange = this.handleNotifChange.bind(this);
     this.handleLogOut = this.handleLogOut.bind(this);
+    this.handleSend = this.handleSend.bind(this);
   }
 
   handleNotifChange(event) {
@@ -35,6 +27,29 @@ class Notification extends Component {
   handleLogOut() {
     this.props.handleLogOut(true);
   }
+
+  handleSend() {
+    const data = {
+      networkIp: "https://330ed741.ngrok.io/api/clients",
+      message: this.state.notifText
+    };
+    let response = fetch("https://ypush.herokuapp.com/send", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: { "Content-Type": "application/json" }
+    });
+    response.then(data => {
+      if (data.status === 200) {
+        alert("Notification Successfully Sent");
+        this.setState({
+          notifText: ""
+        });
+      } else {
+        alert("Some error happened, try again.");
+      }
+    });
+  }
+
   render() {
     const ipList = this.state.listOfConnectedIp.map(ip => {
       return <IpCard ip={ip} />;
@@ -77,7 +92,9 @@ class Notification extends Component {
                 placeholder="Write your notification"
                 onChange={this.handleNotifChange}
               />
-              <button className="send">Send</button>
+              <button className="send" onClick={this.handleSend}>
+                Send
+              </button>
             </div>
           </div>
         </div>
